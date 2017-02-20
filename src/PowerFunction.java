@@ -1,6 +1,6 @@
 public class PowerFunction {
 	
-	public static int pow(int pow,int num){
+	public static float pow(int pow,int num){
 	
 		
 		if(pow==0 || pow==1){
@@ -11,31 +11,54 @@ public class PowerFunction {
 			return 1;
 		
 		int i=0;
-		int value=1;
-		while(i<num){
+		float value=1;
+		while(i<Math.abs(num)){  // abs to check if num is negative
 			value=value*pow;			
 			i++;
 		}
+		if(num<0)
+			return 1/value;
+		
 		return value;
 	}
 		
+	/*
+	 * (base^pow )Works as a recursive call using divide and conquer method
+	 * if pow= even, divide by 2 
+	 * if pow is odd , do an additional multiplication with pow value
+	 * 
+	 * works for float and negative pow value.
+	 * If pow is negative do the same , inverse value before returning
+	 */
 	
-	public static int recursivePow(int pow,int num){
+	public static float recursivePow(int base,int pow){
 		
-
-		if(num==0)
+		boolean negativePower=false;
+		
+		if(pow<0){
+			negativePower=true;
+			pow=pow*-1;
+		}
+		
+		if(pow==0)
 			return 1;
 		
-		if(num==1)
-			return pow;
+		if(pow==1)
+			return base;
 				
-		int value=recursivePow(pow, num/2);
+		float value=recursivePow(base, pow/2);
 		
-		if(num%2==0)
-			return value*value;
+		if(pow%2==0){
+			value=value*value;				
+		}else{
+			value=base*value*value;
+		}	
+		
+		if(negativePower)  //the negativePower flag will be the false for rest of recursive calls except for the base
+			return 1/value;
 		else
-			return pow*value*value;
-		
-		
+			return value;
+			
 	}
+	
 }
