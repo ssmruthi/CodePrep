@@ -73,13 +73,13 @@ public class Graph {
 		nodes.add(source);
 		for (int i = 0; i < nodes.size(); i++) {
 			int x = nodes.get(i);
-			sb.append("("+x + ")->");
+			sb.append(x + ",");
 			neighbours = graphMap.get(x);
 
 			if (neighbours != null)
 				for (Node node : neighbours) {
 					if (node.data == destination) {
-						sb.append("(").append(node.data).append(")");
+						sb.append(node.data);
 						//break;
 					} else {
 						if(!nodes.contains(node.data))
@@ -87,9 +87,6 @@ public class Graph {
 					}
 
 				}
-
-			//nodes.remove(i);
-			sb.append(" or ");
 		}
 
 		System.out.println(sb.toString());

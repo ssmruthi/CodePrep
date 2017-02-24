@@ -191,5 +191,45 @@ class TreeNode {
 		return false;
 
 	}
+	
+	
+	String printInorder(StringBuilder s) {
+
+		if (left != null)
+			left.printInorder(s);
+
+		s.append(data+",");
+
+		if (right != null)
+			right.printInorder(s);
+		
+		return s.toString();
+	}
+	
+	String preOrder(StringBuilder s) {
+
+		s.append(data+",");
+
+		if (left != null)
+			left.preOrder(s);
+		
+		if (right != null)
+			right.preOrder(s);
+		
+		return s.toString();
+	}
+	
+	String postOrder(StringBuilder s) {
+
+		if (left != null)
+			left.postOrder(s);
+
+		if (right != null)
+			right.postOrder(s);
+		
+		s.append(data+",");
+		
+		return s.toString();
+	}
 
 }
