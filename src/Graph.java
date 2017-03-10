@@ -81,6 +81,7 @@ public class Graph {
 					if (node.data == destination) {
 						sb.append(node.data);
 						//break;
+						//return true;
 					} else {
 						if(!nodes.contains(node.data))
 						nodes.add(node.data);
@@ -90,6 +91,7 @@ public class Graph {
 		}
 
 		System.out.println(sb.toString());
+		//return false;
 
 	}
 }
