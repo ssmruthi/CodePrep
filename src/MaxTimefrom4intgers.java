@@ -77,6 +77,11 @@ public class MaxTimefrom4intgers {
 		return comb;
 	}
 	
+	/*
+	 * O(n) solution
+	 * Validates based HH:MM position
+	 */
+	
 	public static String getTimeFormat(int[] arr){
 		
 		StringBuilder result=new StringBuilder();
@@ -91,25 +96,25 @@ public class MaxTimefrom4intgers {
 			input.add(a);
 		}
 		
-		int hour1=getMaxValue(input,2);
-		int hour2=-1;
+		int hourPosOne=getMaxValue(input,2); //validates for hours upto //23
+		int hourPosTwo=-1;
 		
-		if(hour1==2){
-			hour2=getMaxValue(input,3);
-		}else if(hour1==1 || hour1==0){
-			hour2=getMaxValue(input,9);
+		if(hourPosOne==2){ 
+			hourPosTwo=getMaxValue(input,3); 
+		}else if(hourPosOne==1 || hourPosOne==0){ //validate for hours raning from 00 to 19
+			hourPosTwo=getMaxValue(input,9);
 		}else{
 			return null;
 		}
 		
-		int min1=getMaxValue(input, 5);
+		int minPosOne=getMaxValue(input, 5); //validates for minutues upto 59
+		int minPosTwo=getMaxValue(input, 9);
 		
-		if(min1==-1)
+		
+		if(minPosOne==-1 || hourPosTwo==-1 || minPosTwo==-1)
 			return null;
 		
-		int min2=getMaxValue(input, 9);
-		
-		result.append(hour1).append(hour2).append(":").append(min1).append(min2);
+		result.append(hourPosOne).append(hourPosTwo).append(":").append(minPosOne).append(minPosTwo);
 		
 		return result.toString();
 	}
