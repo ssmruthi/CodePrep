@@ -1,81 +1,58 @@
 
 public class ZeroMatrix {
-
-
-	public static int[][] zeromatrix(int[][] m){
+	
+	public static int[][] zeroMatrix (int[][] input){
 		
 		boolean firstRow=false;
 		boolean firstCol=false;
 		
-		for(int x=0;x<m.length;x++){
-			if(m[x][0]==0){
+		for(int i=0;i<input.length;i++)
+			if(input[i][0]==0)
 				firstCol=true;
-				break;
-			}						
-		}
 		
-
-		for(int x=0;x<m[0].length;x++){
-			if(m[0][x]==0){
+		for(int j=0;j<input[0].length;j++)
+			if(input[0][j]==0)
 				firstRow=true;
-				break;
-			}
-		}
 		
 		
-		
-		for(int i=1;i<m.length;i++){
-			for(int j=1;j<m[i].length;j++){
-			
-				if(m[i][j]==0){
-					m[0][j]=0;
-					m[i][0]=0;
+		for(int i=1;i<input.length;i++)
+			for(int j=1;j<input[i].length;j++)
+				if(input[i][j]==0){
+					input[i][0]=0;
+					input[0][j]=0;
 				}
-			}
-			
+		
+		
+		for(int i=1;i<input.length;i++){
+			if(input[i][0]==0)
+				nullifyRow(input,i);
 		}
 		
-		for(int x=0;x<m.length;x++){
-			if(m[x][0]==0){
-				nullifyRow(x, m);
-			}						
-		}
-		
-		for(int x=0;x<m[0].length;x++){
-			if(m[0][x]==0){
-				nullifyCol(x, m);
-			}						
+		for(int j=1;j<input[0].length;j++){
+			if(input[0][j]==0)
+				nullifyCol(input,j);
 		}
 		
 		if(firstRow)
-			nullifyRow(0,m);
+			nullifyRow(input,0);
+		
 		if(firstCol)
-			nullifyCol(0, m);
-		
-		return m;
-		
+			nullifyCol(input,0);
+		return input;
 	}
 	
-	private static void nullifyRow(int i, int[][]m){
+	
+	private static void nullifyRow(int[][] input, int row){
 		
-		//set row to zero
-
-		for(int x=0;x<m[i].length;x++){
-			m[i][x]=0;
-		}
-		
+		for(int i=0;i<input[row].length;i++)
+			input[row][i]=0;
 	}
 	
-
-	private static void nullifyCol(int j, int[][]m){
+	private static void nullifyCol(int[][] input, int col){
 		
-		//set column to zero
-		for(int x=0;x<m.length;x++){
-			m[x][j]=0;
-		}
-		
+		for(int i=0;i<input.length;i++)
+			input[i][col]=0;
 	}
-	
 	
 	
 }
