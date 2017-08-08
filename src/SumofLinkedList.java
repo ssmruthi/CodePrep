@@ -1,5 +1,7 @@
 public class SumofLinkedList {
 	
+	static int carry=0;
+
 	/*
 	 * Sum of list if numbers are stored in reverse. Rsult as reverse value
 	 * Eg : 312 is represented as 2->1->3
@@ -58,6 +60,7 @@ public class SumofLinkedList {
 	 */
 	public static Node sum2(Node h1, Node h2){
 		
+		carry=0;
 		int n1=0;
 		int n2=0;
 		
@@ -89,28 +92,33 @@ public class SumofLinkedList {
 			n2++;
 		}
 		
-		r=recurseSum(null,h1,h2,0);
+		r=recurseSum(null,h1,h2);
+		
+		if(carry>0){
+			Node n=new Node(carry);
+			n.next=r;
+			r=n;
+		}
 		return r;
 		
 	}
 
 
 
-	private static Node recurseSum(Node r,Node h1, Node h2,int carry) {
+	private static Node recurseSum(Node r,Node h1, Node h2) {
 
-	
 		if(h1==null && h2==null){
 			return null;
 		}
 			
-		r=recurseSum(r,h1.next,h2.next,carry);
+		r=recurseSum(r,h1.next,h2.next);
 		int value=	h1.data+h2.data+carry;
-		carry=value>10?1:0;
+		carry=value/10;
 		
 		Node newNode= new Node(value%10);
 		newNode.next=r;
 		r=newNode;
-
+				
 		return r;
 	}
 	
