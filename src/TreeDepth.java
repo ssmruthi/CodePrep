@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import LinkedListPackage.Node;
+
 public class TreeDepth {
 
 	private List<Node> m = new ArrayList<Node>();
